@@ -3,9 +3,7 @@ package javaApp;
 import java.util.Scanner;
 
 public class UserSystemBoundary {
-	Services service = new Services();
-	MobileService mobile;
-
+	FinancialServices servprovider;
 	public void Display()
 	{
 		Scanner scan = new Scanner(System.in);
@@ -15,11 +13,18 @@ public class UserSystemBoundary {
 		int option = scan.nextInt();
 		switch (option) {
 		case 1:
-			/*service.getAllServices();
+			System.out.print("MobileService, Landline service, Internet service, Donations");
+			System.out.println();
 			System.out.println("Enter service name: ");
 			String serve=scan.next();
-			mobile=(MobileService) service.search(serve);
-			mobile.here();*/
+			if(serve.equals("MobileService")) {
+				Services mobile = new MobileService();
+				mobile.displayserviceProvidersForm();
+				String servePro=scan.next();
+				servprovider=mobile.orderServiceProvider(servePro);	
+				servprovider.here();
+				mobile.displayPaymentForm();
+			}
 			//map of services -> array of service provider
 		
 			break;
@@ -32,6 +37,9 @@ public class UserSystemBoundary {
 			//hayro7 ytcheck fe el map ely mawgoda discount el service de 3aliha kam fe el mia
 			// display specific discount
 		}
+		
+	}
+	public void search(String type) {
 		
 	}
 

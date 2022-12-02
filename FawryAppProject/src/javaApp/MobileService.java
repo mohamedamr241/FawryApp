@@ -1,24 +1,47 @@
 package javaApp;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class MobileService extends Services{
-	public static HashMap<String, String[]> serviceProviders;
+	Scanner scan = new Scanner(System.in);
+	ArrayList<String> paymentMethodsName = new ArrayList<String>();
+	ArrayList<String> serviceProvidersName = new ArrayList<String>();
+	Payment creditcard=new CreditCard();
+	Payment cash=new Cash();
 	public MobileService() {
-		serviceProviders = new HashMap<String, String[]>();
+		paymentMethodsName.add("[1]CreditCard");
+		paymentMethodsName.add("[2]Cash");
+		serviceProvidersName.add("we");
 	}
-	public void add(String serP, String[] form) {
+	public void displayPaymentForm() {
+		for(int i=0;i<paymentMethodsName.size();i++) {
+			System.out.println(paymentMethodsName.get(i));
+		}
+		int c=scan.nextInt();
+		if(c==1) {
+			creditcard.pay(30);
+		}
+		else if(c==2) {
+			cash.pay(30);
+		}
 	}
-	public void here() {
-		
-		System.out.print("hi");
+	public void displayserviceProvidersForm() {
+		for(int i=0;i<serviceProvidersName.size();i++) {
+			System.out.println(serviceProvidersName.get(i));
+		}
 	}
-	public FinancialServices MobileServiceProvider(String type) {
-		if(type=="we") 
+	public void pay() {
+		System.out.print("pay");
+	}
+	public FinancialServices createServiceProvider(String type) {
+		if(type.equals("we")) 
 			return new We();
 		else{
 			return null;
 		}
-	}
+		
+	} 
 }
