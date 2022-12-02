@@ -24,7 +24,7 @@ public class Main {
 //					}
 					System.out.println("[1] Sign-in:");
 					System.out.println("[2] Sign-up:");
-					System.out.println("[3] exit user:");
+					System.out.println("[3] logout:");
 					int option2 = scan.nextInt();
 					switch (option2) {
 					case 1:
@@ -65,9 +65,21 @@ public class Main {
 			//Admin email -> "admin@gmail.com", Admin Password -> "0000";
 			else
 			{
-				
-				//AdminSystemBoundary adminBoundary = new AdminSystemBoundary();
-				
+				Admin admin = new Admin();
+				System.out.println("Enter email:");
+				String e = scan.next();
+				System.out.println("Enter password:");
+				String p = scan.next();
+				boolean ok = admin.signIn(e, p);
+				if(ok)
+				{
+					//AdminSystemBoundary adminBoundary = new AdminSystemBoundary();
+				}
+				else
+				{
+					System.out.println("Email or password incorrent, try agin");
+				}
+							
 			}
 		}
 		

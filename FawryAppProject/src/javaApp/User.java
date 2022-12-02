@@ -4,9 +4,6 @@ import java.util.*;
 
 public class User {
 
-
-
-	
 	
 	public boolean signIn(String email, String pass)
 	{
