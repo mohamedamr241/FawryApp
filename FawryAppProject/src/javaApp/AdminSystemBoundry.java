@@ -12,16 +12,7 @@ public class AdminSystemBoundry {
 	int option = scan.nextInt();
 	switch (option) {
 	case 1:
-		Map<String, Integer> map = new HashMap<String, Integer>() ;
-		{
-			{  
-		        map.put("OverAll discount", 10);
-		        map.put("Specific discount", 20);
-			}
-		}
-	
-		break;
-		
+
 	case 2:
 		//Check  list of refund <string , int > -> <user email,amount of refund>
 		break;
