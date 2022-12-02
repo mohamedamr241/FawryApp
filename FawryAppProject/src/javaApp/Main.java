@@ -1,10 +1,12 @@
 package javaApp;
 
-import java.util.Scanner;
+import java.util.*;
+
 
 public class Main {
 	public static void main (String [] args) {
 		Scanner scan = new Scanner(System.in);
+//		Account acc = new Account();
 		boolean activation=true;
 		while(activation) {
 			System.out.println("[1] User:");
@@ -15,6 +17,11 @@ public class Main {
 				User user = new User();
 				boolean cont=true;
 				while(cont) {
+//					for (Map.Entry<String, String> entry : Account.userAccounts.entrySet())
+//					{
+//						System.out.println(entry.getKey());
+//						System.out.println(entry.getValue());
+//					}
 					System.out.println("[1] Sign-in:");
 					System.out.println("[2] Sign-up:");
 					System.out.println("[3] exit user:");
@@ -34,7 +41,7 @@ public class Main {
 						}
 						else
 						{
-							System.out.println("Account not found, please signup");
+							System.out.println("Email or password incorrent, try agin");
 						}
 						
 						break;
@@ -55,8 +62,10 @@ public class Main {
 					}
 				}	
 			}
+			//Admin email -> "admin@gmail.com", Admin Password -> "0000";
 			else
 			{
+				
 				//AdminSystemBoundary adminBoundary = new AdminSystemBoundary();
 				
 			}

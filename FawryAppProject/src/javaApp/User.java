@@ -26,14 +26,6 @@ public class User {
 		}
 		emails.add(email);
 		passwords.add(pass);
-		for (String e : emails)
-		{
-				System.out.println(e);
-		}
-		for (String e : passwords)
-		{
-			System.out.println(e);
-		}
 		return "Account created successfully";
 	}
 }
