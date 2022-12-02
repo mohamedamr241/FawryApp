@@ -1,5 +1,8 @@
 package javaApp;
 
 public interface Payment {
-	public void pay();
+	
+	public void pay(int amount);
+	public static final Discount disc = new Discount();
+	
 }
