@@ -11,7 +11,7 @@ public class CreditCard implements Payment{
 	public ArrayList<String> getData() {
 		return creditCardInfo;
 	}
-	public void pay() {
+	public void pay(int amount) {
 		System.out.println("payment with credit card is done successfully");
 		
 	}

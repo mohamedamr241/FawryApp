@@ -5,7 +5,7 @@ public class Wallet implements Payment{
 	public Wallet(int price) {
 		this.price=price;
 	}
-	public void pay() {
+	public void pay(int amount) {
 		System.out.println("payment with wallet to this service is done successfully");
 	}
 }

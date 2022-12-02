@@ -3,7 +3,8 @@ package javaApp;
 import java.util.Scanner;
 
 public class UserSystemBoundary {
-	
+	Services service = new Services();
+	MobileService mobile;
 
 	public void Display()
 	{
@@ -14,6 +15,11 @@ public class UserSystemBoundary {
 		int option = scan.nextInt();
 		switch (option) {
 		case 1:
+			/*service.getAllServices();
+			System.out.println("Enter service name: ");
+			String serve=scan.next();
+			mobile=(MobileService) service.search(serve);
+			mobile.here();*/
 			//map of services -> array of service provider
 		
 			break;

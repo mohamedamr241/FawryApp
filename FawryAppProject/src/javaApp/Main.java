@@ -37,7 +37,7 @@ public class Main {
 						if(ok)
 						{
 							UserSystemBoundary userBoundary = new UserSystemBoundary();
-							
+							userBoundary.Display();
 						}
 						else
 						{
