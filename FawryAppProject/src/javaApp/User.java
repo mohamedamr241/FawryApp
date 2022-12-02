@@ -4,13 +4,16 @@ import java.util.*;
 
 public class User {
 
-	ArrayList<String> emails = new ArrayList<String>();
-	ArrayList<String> passwords = new ArrayList<String>();
+
+
+	
+	
 	public boolean signIn(String email, String pass)
 	{
-		for (String e : emails)
+		
+		for (Map.Entry<String, String> entry : Account.userAccounts.entrySet())
 		{
-			if(emails.contains(e) && passwords.contains(pass))
+			if(entry.getKey().equals(email) && entry.getValue().equals(pass))
 				return true;
 		}
 		return false;
@@ -19,13 +22,12 @@ public class User {
 	public String signUp(String username, String email, String pass)
 	{
 		
-		for (String e : emails)
+		for (String e : Account.userAccounts.keySet())
 		{
-			if(emails.contains(e))
+			if(e.equals(email))
 				return "Email already exists";
 		}
-		emails.add(email);
-		passwords.add(pass);
+		Account.userAccounts.put(email, pass);
 		return "Account created successfully";
 	}
 }
