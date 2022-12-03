@@ -81,7 +81,24 @@ public class UserSystemBoundary {
 				
 			}
 			
+			else if(serve.equals("Donations"))
+			{
+				Services donation = new DonationService();
+				donation.displayProviders();
+				int providerNum=scan.nextInt();
+				servprovider=donation.orderServiceProvider(providerNum);	
+				
 			
+				providerForm = servprovider.getForm();
+				for(String field : providerForm)
+				{
+					System.out.println("Enter " + field);
+					String ans = scan.next();
+					formAns.add(ans);
+
+				}
+				
+			}
 			//map of services -> array of service provider
 		
 			break;
