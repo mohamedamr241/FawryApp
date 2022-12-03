@@ -14,6 +14,7 @@ public class UserSystemBoundary {
 		System.out.println("[2] Refund:");
 		System.out.println("[3] Check Discount:");		
 		int option = scan.nextInt();
+		int price = 0;
 		switch (option) {
 		case 1:
 			System.out.println("Mobile recharge service");
@@ -37,11 +38,38 @@ public class UserSystemBoundary {
 					System.out.println("Enter " + field);
 					String ans = scan.next();
 					formAns.add(ans);
+					if(field == "Amount")
+						price = Integer.valueOf(ans);
 
 				}
-//				boolean check =mobile.providerHandler.execute(formAns);
-//				if(check)
-//					mobile.displayPaymentForm();
+				boolean check =mobile.providerHandler.execute(formAns);
+				if(check)
+				{
+					System.out.println("choose payment method by number");
+					ArrayList<String> paymentMethods = mobile.displayPayMethods();
+					for(int i = 1; i <= (int)paymentMethods.size(); i++)
+					{
+						System.out.println("[" + i + "] " + paymentMethods.get(i - 1));
+					}
+					int paymthodNum = scan.nextInt();
+					if(paymthodNum == 1)
+					{
+						Payment payMethod = new CreditCard();
+						mobile.setPayMethod(payMethod);
+						mobile.performPayMethod(price);
+					}
+					else if(paymthodNum == 2)
+					{
+						Payment payMethod = new Cash();
+						mobile.setPayMethod(payMethod);
+						mobile.performPayMethod(price);
+					}
+						
+					
+				}
+				
+				
+				
 			}
 			
 			else if(serve.equals("Landline service"))
@@ -101,3 +129,21 @@ public class UserSystemBoundary {
 	}
 
 }
+
+
+
+/*
+ * System.out.println("[1] Show list of services:");
+		System.out.println("[2] Search for service by name:");
+		System.out.println("[3] Request refund:");
+		System.out.println("[4] Check discount:");		
+		int option = scan.nextInt();
+		switch (option) {
+		case 1:
+			System.out.println("Mobile recharge service");
+			System.out.println("Internet payment service");
+			System.out.println("Landline service");
+			System.out.println("Donations");
+			break;
+
+ */

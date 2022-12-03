@@ -5,28 +5,14 @@ public class MobileService extends Services{
 	
 	protected void setData()
 	{
-		paymentMethods.add("[1]CreditCard");
-		paymentMethods.add("[2]Cash");
+		paymentMethods.add("CreditCard");
+		paymentMethods.add("Cash");
 		serviceProviders.add("We");
 		serviceProviders.add("Etisalat");
 		serviceProviders.add("Orange");
 		serviceProviders.add("Vodafone");
 	}
 
-//	public void displayPaymentForm() {
-//		for(int i=0;i<paymentMethodsName.size();i++) {
-//			System.out.println(paymentMethodsName.get(i));
-//		}
-//		int c=scan.nextInt();
-//		if(c==1) {
-//			paymentMethod = new CreditCard();
-//			paymentMethod.pay(30);
-//		}
-//		else if(c==2) {
-//			paymentMethod = new Cash();
-//			paymentMethod.pay(30);
-//		}
-//	}
 
 	public ServiceProviders createServiceProvider(int n) {
 		ServiceProviders sp = null;
