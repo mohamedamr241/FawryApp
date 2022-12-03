@@ -2,8 +2,8 @@ package javaApp;
 
 import java.util.ArrayList;
 
-public class We implements ServiceProviders{
-	public We() {
+public class Etisalat implements ServiceProviders{
+	public Etisalat() {
 		serviceProviderForm.add("Enter mobile Number: ");
 		serviceProviderForm.add("Enter amount: ");
 	}

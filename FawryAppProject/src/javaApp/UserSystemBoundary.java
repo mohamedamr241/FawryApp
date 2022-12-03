@@ -1,9 +1,10 @@
 package javaApp;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserSystemBoundary {
-	FinancialServices servprovider;
+	ServiceProviders servprovider;
 	public void Display()
 	{
 		Scanner scan = new Scanner(System.in);
@@ -22,8 +23,11 @@ public class UserSystemBoundary {
 				mobile.displayserviceProvidersForm();
 				String servePro=scan.next();
 				servprovider=mobile.orderServiceProvider(servePro);	
-				servprovider.here();
-				mobile.displayPaymentForm();
+				ArrayList<String> providerForm = new ArrayList<String>();
+				providerForm =servprovider.getForm();
+				boolean check =mobile.providerHandler.execute(providerForm);
+				if(check)
+					mobile.displayPaymentForm();
 			}
 			//map of services -> array of service provider
 		

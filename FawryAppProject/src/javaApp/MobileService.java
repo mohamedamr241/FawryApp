@@ -15,6 +15,7 @@ public class MobileService extends Services{
 		paymentMethodsName.add("[1]CreditCard");
 		paymentMethodsName.add("[2]Cash");
 		serviceProvidersName.add("we");
+		serviceProvidersName.add("etisalat");
 	}
 	public void displayPaymentForm() {
 		for(int i=0;i<paymentMethodsName.size();i++) {
@@ -36,9 +37,15 @@ public class MobileService extends Services{
 	public void pay() {
 		System.out.print("pay");
 	}
-	public FinancialServices createServiceProvider(String type) {
-		if(type.equals("we")) 
+	public ServiceProviders createServiceProvider(String type) {
+		if(type.equals("we")) {
+			providerHandler=new WeHandler();
 			return new We();
+		}
+		if(type.equals("etisalat")) {
+			providerHandler=new EtisalatHnadler();
+			return new Etisalat();
+		}
 		else{
 			return null;
 		}
