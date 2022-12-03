@@ -3,8 +3,14 @@ package javaApp;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public interface ServiceProviders {
-	Scanner scan = new Scanner(System.in);
+public abstract class ServiceProviders {
+	public ServiceProviders()
+	{
+		setDataForm();
+	}
 	ArrayList<String> serviceProviderForm = new ArrayList<String>();
-	public ArrayList<String> getForm();
+	protected abstract void setDataForm();
+	public ArrayList<String> getForm() {
+		return serviceProviderForm;
+	}
 }
