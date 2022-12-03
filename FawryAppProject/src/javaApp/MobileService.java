@@ -1,54 +1,55 @@
 package javaApp;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
 
 public class MobileService extends Services{
-	Scanner scan = new Scanner(System.in);
-	ArrayList<String> paymentMethodsName = new ArrayList<String>();
-	ArrayList<String> serviceProvidersName = new ArrayList<String>();
-	Payment creditcard=new CreditCard();
-	Payment cash=new Cash();
-	public MobileService() {
-		paymentMethodsName.add("[1]CreditCard");
-		paymentMethodsName.add("[2]Cash");
-		serviceProvidersName.add("we");
-		serviceProvidersName.add("etisalat");
+	
+	protected void setData()
+	{
+		paymentMethods.add("[1]CreditCard");
+		paymentMethods.add("[2]Cash");
+		serviceProviders.add("We");
+		serviceProviders.add("Etisalat");
+		serviceProviders.add("Orange");
+		serviceProviders.add("Vodafone");
 	}
-	public void displayPaymentForm() {
-		for(int i=0;i<paymentMethodsName.size();i++) {
-			System.out.println(paymentMethodsName.get(i));
-		}
-		int c=scan.nextInt();
-		if(c==1) {
-			creditcard.pay(30);
-		}
-		else if(c==2) {
-			cash.pay(30);
-		}
-	}
-	public void displayserviceProvidersForm() {
-		for(int i=0;i<serviceProvidersName.size();i++) {
-			System.out.println(serviceProvidersName.get(i));
-		}
-	}
-	public void pay() {
-		System.out.print("pay");
-	}
-	public ServiceProviders createServiceProvider(String type) {
-		if(type.equals("we")) {
+
+//	public void displayPaymentForm() {
+//		for(int i=0;i<paymentMethodsName.size();i++) {
+//			System.out.println(paymentMethodsName.get(i));
+//		}
+//		int c=scan.nextInt();
+//		if(c==1) {
+//			paymentMethod = new CreditCard();
+//			paymentMethod.pay(30);
+//		}
+//		else if(c==2) {
+//			paymentMethod = new Cash();
+//			paymentMethod.pay(30);
+//		}
+//	}
+
+	public ServiceProviders createServiceProvider(int n) {
+		ServiceProviders sp = null;
+		if(n == 1) {
 			providerHandler=new WeHandler();
-			return new We();
+			sp = new We();
 		}
-		if(type.equals("etisalat")) {
+		else if(n == 2) {
 			providerHandler=new EtisalatHnadler();
-			return new Etisalat();
+			sp = new Etisalat();
 		}
-		else{
-			return null;
+		else if(n == 3) {
+//			providerHandler=new OrangeHnadler();
+			sp = new Orange();
 		}
+//		else if(n == 4) {
+////			providerHandler=new VodafoneHnadler();
+//			sp = new Vodafone();
+//		}
+		return sp;
+
 		
-	} 
+	}
+
+
 }

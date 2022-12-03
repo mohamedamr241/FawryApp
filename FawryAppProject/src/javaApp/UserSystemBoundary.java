@@ -8,27 +8,62 @@ public class UserSystemBoundary {
 	public void Display()
 	{
 		Scanner scan = new Scanner(System.in);
-		System.out.println("[1] Search for service:");
+		ArrayList<String> providerForm = new ArrayList<String>(); //to retrieve fields of the form
+		ArrayList<String> formAns = new ArrayList<String>(); //to store user's answers to the form
+		System.out.println("[1] Search for service by name:");
 		System.out.println("[2] Refund:");
-		System.out.println("[3] Check Specific Discount:");		
+		System.out.println("[3] Check Discount:");		
 		int option = scan.nextInt();
 		switch (option) {
 		case 1:
-			System.out.print("MobileService, Landline service, Internet service, Donations");
-			System.out.println();
-			System.out.println("Enter service name: ");
-			String serve=scan.next();
-			if(serve.equals("MobileService")) {
+			System.out.println("Mobile recharge service");
+			System.out.println("Internet payment service");
+			System.out.println("Landline service");
+			System.out.println("Donations");
+	        String serve = " ";
+	        serve = scan.nextLine();
+	        serve +=scan.nextLine();
+			if(serve.equals("Mobile recharge service")) {
+				
 				Services mobile = new MobileService();
-				mobile.displayserviceProvidersForm();
-				String servePro=scan.next();
-				servprovider=mobile.orderServiceProvider(servePro);	
-				ArrayList<String> providerForm = new ArrayList<String>();
-				providerForm =servprovider.getForm();
-				boolean check =mobile.providerHandler.execute(providerForm);
-				if(check)
-					mobile.displayPaymentForm();
+				mobile.displayProviders();
+				int providerNum=scan.nextInt();
+				servprovider=mobile.orderServiceProvider(providerNum);	
+				
+			
+				providerForm = servprovider.getForm();
+				for(String field : providerForm)
+				{
+					System.out.println("Enter " + field);
+					String ans = scan.next();
+					formAns.add(ans);
+
+				}
+//				boolean check =mobile.providerHandler.execute(formAns);
+//				if(check)
+//					mobile.displayPaymentForm();
 			}
+			
+			else if(serve.equals("Landline service"))
+			{
+				Services landline = new LandlineService();
+				landline.displayProviders();
+				int providerNum=scan.nextInt();
+				servprovider=landline.orderServiceProvider(providerNum);	
+				
+			
+				providerForm = servprovider.getForm();
+				for(String field : providerForm)
+				{
+					System.out.println("Enter " + field);
+					String ans = scan.next();
+					formAns.add(ans);
+
+				}
+				
+			}
+			
+			
 			//map of services -> array of service provider
 		
 			break;
