@@ -1,8 +1,6 @@
 package javaApp;
 
-
-public class MobileService extends Services{
-	
+public class InternetService extends Services{
 	protected void setData()
 	{
 		paymentMethods.add("[1]CreditCard");
@@ -12,22 +10,6 @@ public class MobileService extends Services{
 		serviceProviders.add("Orange");
 		serviceProviders.add("Vodafone");
 	}
-
-//	public void displayPaymentForm() {
-//		for(int i=0;i<paymentMethodsName.size();i++) {
-//			System.out.println(paymentMethodsName.get(i));
-//		}
-//		int c=scan.nextInt();
-//		if(c==1) {
-//			paymentMethod = new CreditCard();
-//			paymentMethod.pay(30);
-//		}
-//		else if(c==2) {
-//			paymentMethod = new Cash();
-//			paymentMethod.pay(30);
-//		}
-//	}
-
 	public ServiceProviders createServiceProvider(int n) {
 		ServiceProviders sp = null;
 		if(n == 1) {
@@ -39,7 +21,7 @@ public class MobileService extends Services{
 			sp = new Etisalat();
 		}
 		else if(n == 3) {
-//			providerHandler=new OrangeHnadler();
+			//providerHandler=new OrangeHnadler();
 			sp = new Orange();
 		}
 		else if(n == 4) {
@@ -50,6 +32,4 @@ public class MobileService extends Services{
 
 		
 	}
-
-
 }

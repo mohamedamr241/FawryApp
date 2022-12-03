@@ -62,6 +62,24 @@ public class UserSystemBoundary {
 				}
 				
 			}
+			else if(serve.equals("Internet payment service"))
+			{
+				Services landline = new InternetService();
+				landline.displayProviders();
+				int providerNum=scan.nextInt();
+				servprovider=landline.orderServiceProvider(providerNum);	
+				
+			
+				providerForm = servprovider.getForm();
+				for(String field : providerForm)
+				{
+					System.out.println("Enter " + field);
+					String ans = scan.next();
+					formAns.add(ans);
+
+				}
+				
+			}
 			
 			
 			//map of services -> array of service provider

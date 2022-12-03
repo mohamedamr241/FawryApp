@@ -18,8 +18,8 @@ public class LandlineService extends Services{
 		
 		if(n == 1)
 			sp = new MonthlyReceipt();
-//		else if (n == 2)
-//			sp = new MonthlyReceipt();
+		else if (n == 2)
+			sp = new QuarterReceipt();
 		
 		return sp;
 	}
