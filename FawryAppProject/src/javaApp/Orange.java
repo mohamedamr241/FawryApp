@@ -1,11 +1,12 @@
 package javaApp;
 
 
-public class Etisalat extends ServiceProviders{
+public class Orange extends ServiceProviders{
 
 	@Override
 	protected void setDataForm() {
 		serviceProviderForm.add("Mobile Number");
-		serviceProviderForm.add("Amount");		
+		serviceProviderForm.add("Amount");			
 	}
+
 }

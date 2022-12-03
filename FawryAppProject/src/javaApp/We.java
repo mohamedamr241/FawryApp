@@ -1,21 +1,11 @@
 package javaApp;
 
-import java.util.ArrayList;
 
-public class We implements ServiceProviders{
-	public We() {
-		serviceProviderForm.add("Enter mobile Number: ");
-		serviceProviderForm.add("Enter amount: ");
+public class We extends ServiceProviders{
+	@Override
+	protected void setDataForm() {
+		serviceProviderForm.add("Mobile Number");
+		serviceProviderForm.add("Amount");		
 	}
-	public ArrayList<String> getForm() {
-		for(int i=0;i<serviceProviderForm.size();i++) {
-			System.out.println(serviceProviderForm.get(i));
-		}
-		String number=scan.next();
-		String amount=scan.next();
-		ArrayList<String> providerForm = new ArrayList<String>();
-		providerForm.add(number);
-		providerForm.add(amount);
-		return providerForm;
-	}
+	
 }
