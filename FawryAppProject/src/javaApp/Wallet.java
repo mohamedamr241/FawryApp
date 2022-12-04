@@ -3,7 +3,8 @@ package javaApp;
 public class Wallet implements Payment{ //each user has a wallet that created auto 
 	
 	double balance = 0;
-	public void pay(int amount) {
+	public void pay(double amount) {
+		balance-=amount;
 		System.out.println("payment with wallet is done successfully");
 	}
 	

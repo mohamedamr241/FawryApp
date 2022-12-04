@@ -36,7 +36,7 @@ public class Main {
 						boolean ok = user.signIn(e, p);
 						if(ok)
 						{
-							UserSystemBoundary userBoundary = new UserSystemBoundary();
+							UserSystemBoundary userBoundary = new UserSystemBoundary(e);
 							userBoundary.Display();
 						}
 						else

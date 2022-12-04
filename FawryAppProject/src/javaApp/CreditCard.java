@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class CreditCard implements Payment{
 	ArrayList<String> creditCardInfo = new ArrayList<String>();
-	public void pay(int amount) {
+	public void pay(double amount) {
 		System.out.println("payment with credit card is done successfully");
 		
 	}
