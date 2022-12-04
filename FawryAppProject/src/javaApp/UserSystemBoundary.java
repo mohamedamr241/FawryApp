@@ -5,6 +5,10 @@ import java.util.Scanner;
 
 public class UserSystemBoundary {
 	ServiceProviders servprovider;
+	String UserEmail;
+	public UserSystemBoundary(String email) {
+		UserEmail=email;
+	}
 	public void Display()
 	{
 
@@ -85,6 +89,18 @@ public class UserSystemBoundary {
 					Payment payMethod = new Cash();
 					mobile.setPayMethod(payMethod);
 					mobile.performPayMethod(price);
+				}
+				else if (payMthodNum ==3){
+					Wallet userWallet = Account.getUserWallet(UserEmail);
+					mobile.setPayMethod(userWallet);
+					if(userWallet.balance>=price) {
+						mobile.performPayMethod(price);
+						check=false;
+					}
+					else {
+						System.out.println("Your wallet balance is not enough");
+						
+					}
 				}
 				
 				
