@@ -26,11 +26,11 @@ public class MobileService extends Services{
 			sp = new Etisalat();
 		}
 		else if(n == 3) {
-//			providerHandler=new OrangeHnadler();
+			providerHandler=new OrangeHandler();
 			sp = new Orange();
 		}
 		else if(n == 4) {
-			//providerHandler=new VodafoneHnadler();
+			providerHandler=new VodafoneHandler();
 			sp = new Vodafone();
 		}
 		return sp;

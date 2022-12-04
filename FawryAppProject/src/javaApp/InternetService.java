@@ -3,8 +3,8 @@ package javaApp;
 public class InternetService extends Services{
 	protected void setData()
 	{
-		paymentMethods.add("[1]CreditCard");
-		paymentMethods.add("[2]Cash");
+		paymentMethods.add("CreditCard");
+		paymentMethods.add("Cash");
 		serviceProviders.add("We");
 		serviceProviders.add("Etisalat");
 		serviceProviders.add("Orange");

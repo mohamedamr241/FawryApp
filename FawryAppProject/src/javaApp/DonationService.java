@@ -4,9 +4,8 @@ public class DonationService extends Services {
 
 	protected void setData()
 	{
-		paymentMethods.add("[1]CreditCard");
-		paymentMethods.add("[2]Cash");
-		//paymentMethods.add("[3]Wallet");
+		paymentMethods.add("CreditCard");
+		paymentMethods.add("Cash");
 		serviceProviders.add("CancerHospital");
 		serviceProviders.add("Schools");
 		serviceProviders.add("NGOs");

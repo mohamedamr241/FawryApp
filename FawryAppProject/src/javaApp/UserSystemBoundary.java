@@ -156,6 +156,29 @@ public class UserSystemBoundary {
 				formAns.add(ans);
 
 			}
+			System.out.println("Choose payment method by number");
+			ArrayList<String> paymentMethods = landline.displayPayMethods();
+			for(int i = 1; i <= (int)paymentMethods.size(); i++)
+			{
+				System.out.println("[" + i + "] " + paymentMethods.get(i - 1));
+			}
+			int payMthodNum = scan.nextInt();
+			if(payMthodNum == 1) //credit card
+			{
+				Payment payMethod = new CreditCard();
+				landline.setPayMethod(payMethod);
+				System.out.println("Enter the following: ");
+				((CreditCard) payMethod).creditCardForm();
+				String creditCardNum = scan.next(), CCN = scan.next();
+				landline.performPayMethod(price);
+
+			}
+			else if(payMthodNum == 2)//cash
+			{
+				Payment payMethod = new Cash();
+				landline.setPayMethod(payMethod);
+				landline.performPayMethod(price);
+			}
 			
 		}
 		else if(serve.equals("Internet payment service"))
@@ -174,6 +197,30 @@ public class UserSystemBoundary {
 				formAns.add(ans);
 
 			}
+			System.out.println("Choose payment method by number");
+			ArrayList<String> paymentMethods = landline.displayPayMethods();
+			for(int i = 1; i <= (int)paymentMethods.size(); i++)
+			{
+				System.out.println("[" + i + "] " + paymentMethods.get(i - 1));
+			}
+			int payMthodNum = scan.nextInt();
+			if(payMthodNum == 1) //credit card
+			{
+				Payment payMethod = new CreditCard();
+				landline.setPayMethod(payMethod);
+				System.out.println("Enter the following: ");
+				((CreditCard) payMethod).creditCardForm();
+				String creditCardNum = scan.next(), CCN = scan.next();
+				landline.performPayMethod(price);
+
+			}
+			else if(payMthodNum == 2)//cash
+			{
+				Payment payMethod = new Cash();
+				landline.setPayMethod(payMethod);
+				landline.performPayMethod(price);
+			}
+			
 			
 		}
 		
@@ -192,6 +239,29 @@ public class UserSystemBoundary {
 				String ans = scan.next();
 				formAns.add(ans);
 
+			}
+			System.out.println("Choose payment method by number");
+			ArrayList<String> paymentMethods = donation.displayPayMethods();
+			for(int i = 1; i <= (int)paymentMethods.size(); i++)
+			{
+				System.out.println("[" + i + "] " + paymentMethods.get(i - 1));
+			}
+			int payMthodNum = scan.nextInt();
+			if(payMthodNum == 1) //credit card
+			{
+				Payment payMethod = new CreditCard();
+				donation.setPayMethod(payMethod);
+				System.out.println("Enter the following: ");
+				((CreditCard) payMethod).creditCardForm();
+				String creditCardNum = scan.next(), CCN = scan.next();
+				donation.performPayMethod(price);
+
+			}
+			else if(payMthodNum == 2)//cash
+			{
+				Payment payMethod = new Cash();
+				donation.setPayMethod(payMethod);
+				donation.performPayMethod(price);
 			}
 		}
 		//map of services -> array of service provider
