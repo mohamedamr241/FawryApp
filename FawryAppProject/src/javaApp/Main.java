@@ -73,7 +73,8 @@ public class Main {
 				boolean ok = admin.signIn(e, p);
 				if(ok)
 				{
-					//AdminSystemBoundary adminBoundary = new AdminSystemBoundary();
+					AdminSystemBoundry adminBoundary = new AdminSystemBoundry();
+					adminBoundary.Display();
 				}
 				else
 				{
