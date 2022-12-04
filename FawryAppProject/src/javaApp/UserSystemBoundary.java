@@ -41,7 +41,11 @@ public class UserSystemBoundary {
 				// display specific discount
 				break;
 			case 4:	
-				//here
+				for(Map.Entry<String, Integer> entry : SpecificDiscount.serviceDiscount.entrySet())
+				{
+					System.out.print("Service " + entry.getKey());
+					System.out.println(" has discount " + entry.getValue() + " $");
+				}
 				break;
 			case 5:
 				chargeWallet();
@@ -71,10 +75,10 @@ public class UserSystemBoundary {
 		double price = 0;
 		ArrayList<String> providerForm = new ArrayList<String>(); //to retrieve fields of the form
 		ArrayList<String> formAns = new ArrayList<String>(); //to store user's answers to the form
-        String serve = " ";
-        serve = scan.nextLine();
-        serve +=scan.nextLine();
-		if(serve.equals("Mobile recharge service")) {
+        String serve = scan.next();
+//        serve = scan.nextLine();
+//        serve +=scan.nextLine();
+		if(serve.equals("MobileRecharge")) {
 			
 			Services mobile = new MobileService();
 			mobile.displayProviders();
