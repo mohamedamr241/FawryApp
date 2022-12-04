@@ -106,17 +106,20 @@ public class UserSystemBoundary {
 				if(payMthodNum == 1) //credit card
 				{
 					Payment payMethod = new CreditCard();
-					if(counter==0) {
-						Payment discount = new OverallDiscount(payMethod);
-						mobile.setPayMethod(discount);						
+					if(counter == 0) {
+						payMethod = new OverallDiscount(payMethod);
 					}
-					else {
-						mobile.setPayMethod(payMethod);	
-					}
+					
+					boolean serviceDiscount = SpecificDiscount.searchService(serve);
+					if(serviceDiscount)
+						payMethod = new SpecificDiscount(payMethod);							
+					mobile.setPayMethod(payMethod);	
 					mobile.performPayMethod(price);
+					
 					System.out.println("Enter the following: ");
 					((CreditCard) payMethod).creditCardForm();
 					String creditCardNum = scan.next(), CCN = scan.next();
+					
 					System.out.println("payment with credit card is done successfully");
 					counter++;
 					
