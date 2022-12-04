@@ -5,6 +5,10 @@ import java.util.Scanner;
 
 public class UserSystemBoundary {
 	ServiceProviders servprovider;
+	String UserEmail;
+	public UserSystemBoundary(String email) {
+		UserEmail=email;
+	}
 	public void Display()
 	{
 		Scanner scan = new Scanner(System.in);
@@ -12,7 +16,8 @@ public class UserSystemBoundary {
 		ArrayList<String> formAns = new ArrayList<String>(); //to store user's answers to the form
 		System.out.println("[1] Search for service by name:");
 		System.out.println("[2] Refund:");
-		System.out.println("[3] Check Discount:");		
+		System.out.println("[3] Check Discount:");	
+		System.out.println("[4] Charge Wallet:");
 		int option = scan.nextInt();
 		int price = 0;
 		switch (option) {
@@ -45,24 +50,41 @@ public class UserSystemBoundary {
 				boolean check =mobile.providerHandler.execute(formAns);
 				if(check)
 				{
-					System.out.println("choose payment method by number");
-					ArrayList<String> paymentMethods = mobile.displayPayMethods();
-					for(int i = 1; i <= (int)paymentMethods.size(); i++)
-					{
-						System.out.println("[" + i + "] " + paymentMethods.get(i - 1));
-					}
-					int paymthodNum = scan.nextInt();
-					if(paymthodNum == 1)
-					{
-						Payment payMethod = new CreditCard();
-						mobile.setPayMethod(payMethod);
-						mobile.performPayMethod(price);
-					}
-					else if(paymthodNum == 2)
-					{
-						Payment payMethod = new Cash();
-						mobile.setPayMethod(payMethod);
-						mobile.performPayMethod(price);
+					while(check) {
+						
+						System.out.println("choose payment method by number");
+						ArrayList<String> paymentMethods = mobile.displayPayMethods();
+						for(int i = 1; i <= (int)paymentMethods.size(); i++)
+						{
+							System.out.println("[" + i + "] " + paymentMethods.get(i - 1));
+						}
+						int paymthodNum = scan.nextInt();
+						if(paymthodNum == 1)
+						{
+							Payment payMethod = new CreditCard();
+							mobile.setPayMethod(payMethod);
+							mobile.performPayMethod(price);
+							check=false;
+						}
+						else if(paymthodNum == 2)
+						{
+							Payment payMethod = new Cash();
+							mobile.setPayMethod(payMethod);
+							mobile.performPayMethod(price);
+							check=false;
+						}
+						else if (paymthodNum ==3){
+							Wallet userWallet = Account.getUserWallet(UserEmail);
+							mobile.setPayMethod(userWallet);
+							if(userWallet.balance>=price) {
+								mobile.performPayMethod(price);
+								check=false;
+							}
+							else {
+								System.out.println("Your wallet balance is not enough");
+								
+							}
+						}
 					}
 						
 					

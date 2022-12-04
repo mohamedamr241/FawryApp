@@ -7,6 +7,7 @@ public class MobileService extends Services{
 	{
 		paymentMethods.add("CreditCard");
 		paymentMethods.add("Cash");
+		paymentMethods.add("Wallet");
 		serviceProviders.add("We");
 		serviceProviders.add("Etisalat");
 		serviceProviders.add("Orange");

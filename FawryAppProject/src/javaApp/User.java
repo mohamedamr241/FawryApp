@@ -25,6 +25,7 @@ public class User {
 				return "Email already exists";
 		}
 		Account.userAccounts.put(email, pass);
+		Account.userWallet.put(email, new Wallet());
 		return "Account created successfully";
 	}
 }
