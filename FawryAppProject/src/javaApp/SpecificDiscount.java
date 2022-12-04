@@ -22,11 +22,8 @@ public class SpecificDiscount extends Discount {
 		}
 		return false;
 	}
-	{
-		{  
-	        map.put("Mobile recharge service",20);
-		}
-	}
+	
+	
 	public double pay(double price) {
 		double discount = serviceDiscount.get(serviceTmp);
 		return payment.pay(price) - (price *(discount/100));

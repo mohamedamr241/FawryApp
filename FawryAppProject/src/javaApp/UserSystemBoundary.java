@@ -1,7 +1,7 @@
 package javaApp;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+
+import java.util.*;
 
 public class UserSystemBoundary {
 	ServiceProviders servprovider;
