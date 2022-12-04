@@ -1,11 +1,20 @@
 package javaApp;
 
-public class Wallet implements Payment{
-	int price;
-	public Wallet(int price) {
-		this.price=price;
-	}
+public class Wallet implements Payment{ //each user has a wallet that created auto 
+	
+	double balance = 0;
 	public void pay(int amount) {
-		System.out.println("payment with wallet to this service is done successfully");
+		System.out.println("payment with wallet is done successfully");
 	}
+	
+	public void chargeViaCreditCard(double balance)
+	{
+		this.balance += balance;
+	}
+	
+	public double getBalance()
+	{
+		return balance;
+	}
+	
 }
