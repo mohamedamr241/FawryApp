@@ -1,6 +1,6 @@
 package javaApp;
 import java.util.*;
-public class Discount {
+public abstract class Discount implements Payment{
 
 	Map<String, Integer> map = new HashMap<String, Integer>() ;
 	{
@@ -9,10 +9,5 @@ public class Discount {
 	        map.put("Specific discount", 20);
 		}
 	}
-
-	
-	
-	
-	
-	
+	public abstract double pay(double price);
 }

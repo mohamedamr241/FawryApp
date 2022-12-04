@@ -6,9 +6,8 @@ import java.util.Scanner;
 
 public class CreditCard implements Payment{
 	static ArrayList<String> creditCardInfo = new ArrayList<String>(Arrays.asList("Credit card number","CCN"));
-	public void pay(double amount) {
-		System.out.println("payment with credit card is done successfully");
-		
+	public double pay(double amount) {
+		return amount;
 	}
 	public static void creditCardForm() {
 	for(String s : creditCardInfo)

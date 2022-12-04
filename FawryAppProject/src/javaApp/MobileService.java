@@ -13,8 +13,6 @@ public class MobileService extends Services{
 		serviceProviders.add("Orange");
 		serviceProviders.add("Vodafone");
 	}
-
-
 	public ServiceProviders createServiceProvider(int n) {
 		ServiceProviders sp = null;
 		if(n == 1) {

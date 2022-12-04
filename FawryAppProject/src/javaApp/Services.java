@@ -35,7 +35,7 @@ public abstract class Services {
 	
 	public void performPayMethod(double price)
 	{
-		payMethod.pay(price);
+		System.out.println("price after discount: "+payMethod.pay(price));
 	}
 	
 }

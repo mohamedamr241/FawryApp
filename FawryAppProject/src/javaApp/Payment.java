@@ -1,7 +1,6 @@
 package javaApp;
 
 public interface Payment {	
-	public void pay(double amount);
-	public static final Discount disc = new Discount();
-	
+	public double pay(double amount);
+	//public static final Discount disc = new Discount();
 }

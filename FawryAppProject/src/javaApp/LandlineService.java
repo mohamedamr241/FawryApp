@@ -11,7 +11,6 @@ public class LandlineService extends Services{
 		serviceProviders.add("QuarterReceipt");
 		
 	}
-
 	@Override
 	public ServiceProviders createServiceProvider(int n) {
 		ServiceProviders sp = null;

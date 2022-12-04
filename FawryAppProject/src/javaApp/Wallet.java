@@ -5,9 +5,9 @@ import java.util.Map;
 public class Wallet implements Payment{ //each user has a wallet that created auto 
 	
 	private double balance = 0;
-	public void pay(double amount) {
+	public double pay(double amount) {
 		balance-=amount;
-		System.out.println("payment with wallet is done successfully");
+		return  amount;
 	}
 	
 	public void chargeViaCreditCard(double balance)

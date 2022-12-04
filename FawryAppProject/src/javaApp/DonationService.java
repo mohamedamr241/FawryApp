@@ -11,7 +11,6 @@ public class DonationService extends Services {
 		serviceProviders.add("NGOs");
 		
 	}
-
 	public ServiceProviders createServiceProvider(int n) {
 		ServiceProviders sp = null;
 		if(n == 1) {

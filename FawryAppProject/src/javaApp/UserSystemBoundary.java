@@ -7,6 +7,7 @@ public class UserSystemBoundary {
 	ServiceProviders servprovider;
 	Scanner scan = new Scanner(System.in);
 	String UserEmail;
+	int counter=0;
 	public UserSystemBoundary(String email) {
 		UserEmail=email;
 	}
@@ -94,6 +95,7 @@ public class UserSystemBoundary {
 			boolean check =mobile.providerHandler.execute(formAns);
 			if(check)
 			{
+				
 				System.out.println("Choose payment method by number");
 				ArrayList<String> paymentMethods = mobile.displayPayMethods();
 				for(int i = 1; i <= (int)paymentMethods.size(); i++)
@@ -104,24 +106,49 @@ public class UserSystemBoundary {
 				if(payMthodNum == 1) //credit card
 				{
 					Payment payMethod = new CreditCard();
-					mobile.setPayMethod(payMethod);
+					if(counter==0) {
+						Payment discount = new OverallDiscount(payMethod);
+						mobile.setPayMethod(discount);						
+					}
+					else {
+						mobile.setPayMethod(payMethod);	
+					}
+					mobile.performPayMethod(price);
 					System.out.println("Enter the following: ");
 					((CreditCard) payMethod).creditCardForm();
 					String creditCardNum = scan.next(), CCN = scan.next();
-					mobile.performPayMethod(price);
-
+					System.out.println("payment with credit card is done successfully");
+					counter++;
+					
 				}
 				else if(payMthodNum == 2)//cash
 				{
 					Payment payMethod = new Cash();
-					mobile.setPayMethod(payMethod);
+					if(counter==0) {
+						Payment discount = new OverallDiscount(payMethod);
+						mobile.setPayMethod(discount);						
+					}
+					else {
+						mobile.setPayMethod(payMethod);	
+					}
 					mobile.performPayMethod(price);
+					System.out.println("payment with cash is done successfully");
+					counter++;
 				}
 				else if (payMthodNum ==3){ //wallet
 					Wallet userWallet = Wallet.getUserWallet(UserEmail);
-					mobile.setPayMethod(userWallet);
+					if(counter==0) {
+						Payment discount = new OverallDiscount(userWallet);
+						mobile.setPayMethod(discount);						
+					}
+					else {
+						mobile.setPayMethod(userWallet);	
+					}
 					if(userWallet.getBalance()>=price) {
 						mobile.performPayMethod(price);
+						System.out.println("payment with wallet is done successfully");
+						System.out.println(userWallet.getBalance());
+						counter++;
 						check=false;
 					}
 					else {
