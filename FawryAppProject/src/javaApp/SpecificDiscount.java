@@ -8,5 +8,8 @@ public class SpecificDiscount extends Discount {
 	        map.put("mobile service",20);
 		}
 	}
+	public double pay(double price) {
+		return price;
+	}
 	
 }
