@@ -33,7 +33,7 @@ public abstract class Services {
 		this.payMethod = payMethod;
 	}
 	
-	public void performPayMethod(int price)
+	public void performPayMethod(double price)
 	{
 		payMethod.pay(price);
 	}
