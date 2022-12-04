@@ -9,5 +9,8 @@ public class Admin {
 		return false;
 	}
 	
-
+	public void addDiscount(String service, int dis)
+	{
+		SpecificDiscount.serviceDiscount.put(service,dis);
+	}
 }
