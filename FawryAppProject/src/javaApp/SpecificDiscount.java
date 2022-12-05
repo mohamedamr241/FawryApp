@@ -2,7 +2,9 @@ package javaApp;
 import java.util.*;
 
 public class SpecificDiscount extends Discount {
-	static Map<String, Integer> serviceDiscount = new HashMap<String, Integer>() ; //to store service and its applied discount
+	static Map<String, Integer> serviceDiscount = new HashMap<String, Integer>(){{
+	    put("MobileRecharge", 20);
+	}}; //to store service and its applied discount
 	Payment payment;
 	static String serviceTmp;
 	public SpecificDiscount(Payment payment)
