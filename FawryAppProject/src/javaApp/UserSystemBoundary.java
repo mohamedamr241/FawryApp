@@ -59,7 +59,7 @@ public class UserSystemBoundary {
 				}
 				break;
 			case 7:
-				Transactions.userTransactionNumber.put(UserEmail,transactionCounter);
+				Transactions.userTransactionNumber.put(UserEmail,transactionCounter);//update user transaction with last transaction
 				cont=false;
 				break;
 			}
@@ -133,7 +133,7 @@ public class UserSystemBoundary {
 				{
 					Payment payMethod = new CreditCard();
 					if(transactionCounter == 0) {
-						System.out.println("Overall discount will be preformed as it's your first transaction");
+						System.out.println("Overall discount will be preformed as it's your first transaction (10% off)");
 						payMethod = new OverallDiscount(payMethod);
 					}
 					
@@ -158,7 +158,7 @@ public class UserSystemBoundary {
 				{
 					Payment payMethod = new Cash();
 					if(transactionCounter == 0) {
-						System.out.println("Overall discount will be preformed as it's your first transaction");
+						System.out.println("Overall discount will be preformed as it's your first transaction (10% off)");
 						payMethod = new OverallDiscount(payMethod);
 					}
 					
@@ -247,7 +247,7 @@ public class UserSystemBoundary {
 			{
 				Payment payMethod = new CreditCard();
 				if(transactionCounter == 0) {
-					System.out.println("Overall discount will be preformed as it's your first transaction");
+					System.out.println("Overall discount will be preformed as it's your first transaction (10% off)");
 					payMethod = new OverallDiscount(payMethod);
 				}
 				
@@ -269,7 +269,7 @@ public class UserSystemBoundary {
 			{
 				Payment payMethod = new Cash();
 				if(transactionCounter == 0) {
-					System.out.println("Overall discount will be preformed as it's your first transaction");
+					System.out.println("Overall discount will be preformed as it's your first transaction (10% off)");
 					payMethod = new OverallDiscount(payMethod);
 				}
 				
@@ -332,7 +332,7 @@ public class UserSystemBoundary {
 			{
 				Payment payMethod = new Cash();
 				if(transactionCounter == 0) {
-					System.out.println("Overall discount will be preformed as it's your first transaction");
+					System.out.println("Overall discount will be preformed as it's your first transaction (10% off)");
 					payMethod = new OverallDiscount(payMethod);
 				}
 				
@@ -378,7 +378,7 @@ public class UserSystemBoundary {
 			{
 				Payment payMethod = new CreditCard();
 				if(transactionCounter == 0) {
-					System.out.println("Overall discount will be preformed as it's your first transaction");
+					System.out.println("Overall discount will be preformed as it's your first transaction (10% off)");
 					payMethod = new OverallDiscount(payMethod);
 				}
 				
