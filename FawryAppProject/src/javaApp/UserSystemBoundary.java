@@ -39,34 +39,16 @@ public class UserSystemBoundary {
 				search();
 				break;
 			case 3:
-				System.out.println("Enter your transaction ID");
-				int transId = scan.nextInt();
-				System.out.println("Enter the amount to be refunded");
-				double amout = scan.nextDouble();
-				System.out.println("Enter service name");
-				String serviceName = scan.next();
-				User.requestRefund(transId, amout, serviceName, UserEmail);
+				refund();
 				break;
 			case 4:	
-				for(Map.Entry<String, Integer> entry : SpecificDiscount.serviceDiscount.entrySet())
-				{
-					System.out.print("Service " + entry.getKey());
-					System.out.println(" has discount " + entry.getValue() + " $");
-				}
+				discount();
 				break;
 			case 5:
 				chargeWallet();
 				break;
 			case 6:
-				for (Map.Entry<String, User> entry : Account.users.entrySet())
-				{
-					if(entry.getKey().equals(UserEmail))
-					{
-						for(int i=0;i<entry.getValue().notifications.size();i++) {
-							System.out.println(entry.getValue().notifications.get(i));
-						}
-					}
-				}
+				discount();
 				break;
 			case 7:
 				Transactions.userTransactionNumber.put(UserEmail,transactionCounter);
@@ -76,7 +58,33 @@ public class UserSystemBoundary {
 		}
 		
 	}
-	
+	public void notification() {
+		for (Map.Entry<String, User> entry : Account.users.entrySet())
+		{
+			if(entry.getKey().equals(UserEmail))
+			{
+				for(int i=0;i<entry.getValue().notifications.size();i++) {
+					System.out.println(entry.getValue().notifications.get(i));
+				}
+			}
+		}
+	}
+	public void discount() {
+		for(Map.Entry<String, Integer> entry : SpecificDiscount.serviceDiscount.entrySet())
+		{
+			System.out.print("Service " + entry.getKey());
+			System.out.println(" has discount " + entry.getValue() + " $");
+		}
+	}
+	public void refund() {
+		System.out.println("Enter your transaction ID");
+		int transId = scan.nextInt();
+		System.out.println("Enter the amount to be refunded");
+		double amout = scan.nextDouble();
+		System.out.println("Enter service name");
+		String serviceName = scan.next();
+		User.requestRefund(transId, amout, serviceName, UserEmail);
+	}
 	public void chargeWallet() {
 		
 		CreditCard creditcard = new CreditCard();

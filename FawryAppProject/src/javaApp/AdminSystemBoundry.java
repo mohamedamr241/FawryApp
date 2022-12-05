@@ -16,25 +16,26 @@ public class AdminSystemBoundry {
 		int option = scan.nextInt();
 		switch (option) {
 		case 1:
-			
-			System.out.println("Enter service name:");
-			System.out.println("MobileRecharge");
-			System.out.println("InternetPayment");
-			System.out.println("Landline");
-			System.out.println("Donations");
-			String serviceName = scan.next();
-			System.out.println("Enter discount Amount");
-			int discountAmount = scan.nextInt();
-			admin.addDiscount(serviceName, discountAmount);
+			addDiscount();
 			break;
 		case 2:
-			if(Admin.reqRefundList.size() == 0)
-			{
-				System.out.println("There's no refund requests");
-				break;
-				
-			}
-
+			checkListOfRefunds();
+			break;
+		case 3:
+			check = false;
+			break;
+		}
+		
+	}
+	
+	}
+	public void checkListOfRefunds() {
+		if(Admin.reqRefundList.size() == 0)
+		{
+			System.out.println("There's no refund requests");		
+		}
+		else {
+			
 			for(int i = 0; i < Admin.reqRefundList.size(); i++)
 			{
 				
@@ -57,14 +58,19 @@ public class AdminSystemBoundry {
 				else Admin.NotifyRefund(Admin.reqRefundList.get(i).userEmail,"your refund request is rejected"); 
 			}
 			Admin.reqRefundList.clear();
-			break;
-		case 3:
-			check = false;
-			break;
 		}
-		
+	}
+	public void addDiscount() {
+		System.out.println("Enter service name:");
+		System.out.println("MobileRecharge");
+		System.out.println("InternetPayment");
+		System.out.println("Landline");
+		System.out.println("Donations");
+		String serviceName = scan.next();
+		System.out.println("Enter discount Amount");
+		int discountAmount = scan.nextInt();
+		admin.addDiscount(serviceName, discountAmount);
 	}
 	
-	}
 	
 }
