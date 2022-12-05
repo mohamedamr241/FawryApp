@@ -2,9 +2,9 @@ package javaApp;
 import java.util.*;
 
 
-public class User {
+public class User implements Observer{
 
-	
+	public ArrayList<String> notifications = new ArrayList<String>();
 	public boolean signIn(String email, String pass)
 	{
 		
@@ -16,24 +16,32 @@ public class User {
 		return false;
 	}
 	
-	public String signUp(String username, String email, String pass)
+	public String signUp(String username, String email, String pass, User u)
 	{
+		
 		
 		for (String e : Account.userAccounts.keySet())
 		{
 			if(e.equals(email))
 				return "Email already exists";
 		}
+		Account.users.put(email,u);
+		Transactions.userTransactionNumber.put(email,0);
 		Account.userAccounts.put(email, pass);
 		Account.userWallet.put(email, new Wallet());
 		return "Account created successfully";
 	}
 	
-	public static void requestRefund(int id, double amount, String service) //related service and the amount to be refunded
+	public static void requestRefund(int id, double amount, String service, String email) 
 	{
-		Obj obj = new Obj(id, amount, service);
+		Obj obj = new Obj(id, amount, service, email);
 		Admin.reqRefundList.add(obj);
-		System.out.println("Your request refund is submited");//(check notifications)
+		System.out.println("Your request refund is submited, it will be processed and you'll get notification");
+	}
+
+	@Override
+	public void update(String note) {
+		notifications.add(note);
 	}
 }
 

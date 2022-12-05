@@ -26,22 +26,22 @@ public class AdminSystemBoundry {
 		admin.addDiscount(serviceName, discountAmount);
 		break;
 	case 2:
-		for(Obj o : Admin.reqRefundList)
+		for(int i = 0; i < Admin.reqRefundList.size(); i++)
 		{
-			System.out.println(o);
-			boolean ok = admin.proccessRefund(o);
+			
+			System.out.println(Admin.reqRefundList.get(i));
+			boolean ok = admin.proccessRefund(Admin.reqRefundList.get(i));
 			if(ok)
 				System.out.println("Transcation ID and amount is correct");
 			else
 				System.out.println("Transcation ID and amount is incorrect");
 			System.out.println("[1]Accept Refund Request");
 			System.out.println("[2]reject Refund Request");
+			
 			int acc = scan.nextInt();
-//			if(acc == 1)
-				//notify user accepted
-			
-			
-
+			if(acc == 1)
+				admin.Notify("your refund request is accepted");
+			else admin.Notify("your refund request is rejected");
 		}
 		break;
 	
@@ -49,8 +49,8 @@ public class AdminSystemBoundry {
 	
 	}
 	
-	
-	
-	
-	
 }
+//				Wallet userWallet = Wallet.getUserWallet(Admin.reqRefundList.get(i).userEmail);
+//				double balance = userWallet.getBalance();
+//				userWallet.chargeViaCreditCard(Admin.reqRefundList.get(i).amount);
+//				admin.Notify("your refund request is accepted and your wallet balance is updated from " + balance + " to " + userWallet.getBalance());

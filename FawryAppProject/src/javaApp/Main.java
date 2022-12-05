@@ -8,7 +8,6 @@ public class Main {
 		Scanner scan = new Scanner(System.in);
 		User user =new User(); 
 		Admin admin = new Admin();
-//		Account acc = new Account();
 		boolean activation=true;
 		while(activation) {
 			System.out.println("[1] User:");
@@ -19,11 +18,6 @@ public class Main {
 				
 				boolean cont=true;
 				while(cont) {
-//					for (Map.Entry<String, String> entry : Account.userAccounts.entrySet())
-//					{
-//						System.out.println(entry.getKey());
-//						System.out.println(entry.getValue());
-//					}
 					System.out.println("[1] Sign-in:");
 					System.out.println("[2] Sign-up:");
 					System.out.println("[3] logout:");
@@ -42,10 +36,7 @@ public class Main {
 							userBoundary.Display();
 						}
 						else
-						{
-							System.out.println("Email or password incorrent, try agin");
-						}
-						
+							System.out.println("Email or password incorrent, try agin");						
 						break;
 						
 					case 2:
@@ -66,7 +57,6 @@ public class Main {
 					}
 				}	
 			}
-			//Admin email -> "admin@gmail.com", Admin Password -> "0000";
 			else
 			{
 				
@@ -81,9 +71,7 @@ public class Main {
 					adminBoundary.Display();
 				}
 				else
-				{
 					System.out.println("Email or password incorrent, try agin");
-				}
 							
 			}
 		}

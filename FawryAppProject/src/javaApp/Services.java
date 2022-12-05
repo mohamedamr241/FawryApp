@@ -33,9 +33,11 @@ public abstract class Services {
 		this.payMethod = payMethod;
 	}
 	
-	public void performPayMethod(double price)
+	public double performPayMethod(double price)
 	{
-		System.out.println("price after discount: "+payMethod.pay(price));
+		double disPrice = payMethod.pay(price);
+		System.out.println("price after discount: "+disPrice);
+		return disPrice;
 	}
 	
 }
