@@ -1,6 +1,5 @@
 package javaApp;
 import java.util.*;
-import java.util.Scanner;
 
 public class AdminSystemBoundry {
 	Admin admin = new Admin();
@@ -27,7 +26,23 @@ public class AdminSystemBoundry {
 		admin.addDiscount(serviceName, discountAmount);
 		break;
 	case 2:
-		//Check  list of refund <string , int > -> <user email,amount of refund>
+		for(Obj o : Admin.reqRefundList)
+		{
+			System.out.println(o);
+			boolean ok = admin.proccessRefund(o);
+			if(ok)
+				System.out.println("Transcation ID and amount is correct");
+			else
+				System.out.println("Transcation ID and amount is incorrect");
+			System.out.println("[1]Accept Refund Request");
+			System.out.println("[2]reject Refund Request");
+			int acc = scan.nextInt();
+//			if(acc == 1)
+				//notify user accepted
+			
+			
+
+		}
 		break;
 	
 	}

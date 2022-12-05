@@ -7,7 +7,7 @@ public class UserSystemBoundary {
 	ServiceProviders servprovider;
 	Scanner scan = new Scanner(System.in);
 	String UserEmail;
-	int counter=0;
+	int transactionCounter=0;
 	public UserSystemBoundary(String email) {
 		UserEmail=email;
 	}
@@ -36,9 +36,13 @@ public class UserSystemBoundary {
 				// map of list refund <string , int > -> <user email,amount of refund>
 				break;
 			case 3:
-				System.out.println("First-time Transaction User Discount Save 10% On All Services  ");	
-				//hayro7 ytcheck fe el map ely mawgoda discount el service de 3aliha kam fe el mia
-				// display specific discount
+				System.out.println("Enter your transaction ID");
+				int transId = scan.nextInt();
+				System.out.println("Enter the amount to be refunded");
+				double amout = scan.nextDouble();
+				System.out.println("Enter service name");
+				String serviceName = scan.next();
+				User.requestRefund(transId, amout, serviceName);
 				break;
 			case 4:	
 				for(Map.Entry<String, Integer> entry : SpecificDiscount.serviceDiscount.entrySet())
@@ -110,7 +114,7 @@ public class UserSystemBoundary {
 				if(payMthodNum == 1) //credit card
 				{
 					Payment payMethod = new CreditCard();
-					if(counter == 0) {
+					if(transactionCounter == 0) {
 						payMethod = new OverallDiscount(payMethod);
 					}
 					
@@ -120,18 +124,17 @@ public class UserSystemBoundary {
 					mobile.setPayMethod(payMethod);	
 					mobile.performPayMethod(price);
 					
-					System.out.println("Enter the following: ");
-					((CreditCard) payMethod).creditCardForm();
-					String creditCardNum = scan.next(), CCN = scan.next();
+//					System.out.println("Enter the following: ");
+//					((CreditCard) payMethod).creditCardForm();
+//					String creditCardNum = scan.next(), CCN = scan.next();
 					
 					System.out.println("payment with credit card is done successfully");
-					counter++;
 					
 				}
 				else if(payMthodNum == 2)//cash
 				{
 					Payment payMethod = new Cash();
-					if(counter==0) {
+					if(transactionCounter==0) {
 						Payment discount = new OverallDiscount(payMethod);
 						mobile.setPayMethod(discount);						
 					}
@@ -140,11 +143,10 @@ public class UserSystemBoundary {
 					}
 					mobile.performPayMethod(price);
 					System.out.println("payment with cash is done successfully");
-					counter++;
 				}
 				else if (payMthodNum ==3){ //wallet
 					Wallet userWallet = Wallet.getUserWallet(UserEmail);
-					if(counter==0) {
+					if(transactionCounter==0) {
 						Payment discount = new OverallDiscount(userWallet);
 						mobile.setPayMethod(discount);						
 					}
@@ -155,7 +157,6 @@ public class UserSystemBoundary {
 						mobile.performPayMethod(price);
 						System.out.println("payment with wallet is done successfully");
 						System.out.println(userWallet.getBalance());
-						counter++;
 						check=false;
 					}
 					else {
@@ -164,7 +165,10 @@ public class UserSystemBoundary {
 					}
 				}
 				
-				
+				transactionCounter++;
+				Transactions.addTransaction(transactionCounter, price, serve);//UserEmail
+				System.out.println("Your transaction id is " + transactionCounter + "(must be known so you can request rufund)");
+
 			}
 			else {
 				System.out.println("Fields of the form is incorrect");
@@ -254,6 +258,8 @@ public class UserSystemBoundary {
 				landline.setPayMethod(payMethod);
 				landline.performPayMethod(price);
 			}
+			
+			
 			
 			
 		}

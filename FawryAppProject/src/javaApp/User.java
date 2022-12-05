@@ -28,4 +28,30 @@ public class User {
 		Account.userWallet.put(email, new Wallet());
 		return "Account created successfully";
 	}
+	
+	public static void requestRefund(int id, double amount, String service) //related service and the amount to be refunded
+	{
+		Obj obj = new Obj(id, amount, service);
+		Admin.reqRefundList.add(obj);
+		System.out.println("Your request refund is submited");//(check notifications)
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
