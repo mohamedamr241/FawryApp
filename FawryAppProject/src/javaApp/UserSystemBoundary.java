@@ -10,6 +10,7 @@ public class UserSystemBoundary {
 	int counter=0;
 	public UserSystemBoundary(String email) {
 		UserEmail=email;
+		counter=Account.userTransactionNumber.get(UserEmail);
 	}
 	public void Display()
 	{
@@ -21,13 +22,14 @@ public class UserSystemBoundary {
 			System.out.println("[3] Request refund:");
 			System.out.println("[4] Check discount:");
 			System.out.println("[5] charge wallet:");
-			System.out.println("[6] exit:");
+			System.out.println("[6] check notifications:");
+			System.out.println("[7] exit:");
 			int option = scan.nextInt();
 			switch (option) {
 			case 1:
-				System.out.println("Mobile recharge service");
-				System.out.println("Internet payment service");
-				System.out.println("Landline service");
+				System.out.println("MobileRecharge");
+				System.out.println("InternetPayment");
+				System.out.println("Landline");
 				System.out.println("Donations");
 				break;
 				
@@ -51,9 +53,21 @@ public class UserSystemBoundary {
 				chargeWallet();
 				break;
 			case 6:
-				cont=false;
+				for (Map.Entry<String, User> entry : Account.users.entrySet())
+				{
+					if(entry.getKey().equals(UserEmail))
+					{
+						entry.getValue().notifications.size();
+						for(int i=0;i<entry.getValue().notifications.size();i++) {
+							System.out.println(entry.getValue().notifications.get(i));
+						}
+					}
+				}
 				break;
-			
+			case 7:
+				cont=false;
+				Account.userTransactionNumber.put(UserEmail,counter);
+				break;
 			
 			}
 		}
@@ -121,7 +135,7 @@ public class UserSystemBoundary {
 					mobile.performPayMethod(price);
 					
 					System.out.println("Enter the following: ");
-					((CreditCard) payMethod).creditCardForm();
+					CreditCard.creditCardForm();
 					String creditCardNum = scan.next(), CCN = scan.next();
 					
 					System.out.println("payment with credit card is done successfully");
@@ -131,13 +145,14 @@ public class UserSystemBoundary {
 				else if(payMthodNum == 2)//cash
 				{
 					Payment payMethod = new Cash();
-					if(counter==0) {
-						Payment discount = new OverallDiscount(payMethod);
-						mobile.setPayMethod(discount);						
+					if(counter == 0) {
+						payMethod = new OverallDiscount(payMethod);
 					}
-					else {
-						mobile.setPayMethod(payMethod);	
-					}
+					
+					boolean serviceDiscount = SpecificDiscount.searchService(serve);
+					if(serviceDiscount)
+						payMethod = new SpecificDiscount(payMethod);							
+					mobile.setPayMethod(payMethod);	
 					mobile.performPayMethod(price);
 					System.out.println("payment with cash is done successfully");
 					counter++;
@@ -146,10 +161,24 @@ public class UserSystemBoundary {
 					Wallet userWallet = Wallet.getUserWallet(UserEmail);
 					if(counter==0) {
 						Payment discount = new OverallDiscount(userWallet);
-						mobile.setPayMethod(discount);						
+						boolean serviceDiscount = SpecificDiscount.searchService(serve);
+						if(serviceDiscount)
+						{
+							discount = new SpecificDiscount(discount);
+						}
+						mobile.setPayMethod(discount);
 					}
 					else {
-						mobile.setPayMethod(userWallet);	
+						boolean serviceDiscount = SpecificDiscount.searchService(serve);
+						if(serviceDiscount)
+						{
+							Payment discount = new SpecificDiscount(userWallet);
+							mobile.setPayMethod(discount);
+
+						}
+						else {
+							mobile.setPayMethod(userWallet);								
+						}
 					}
 					if(userWallet.getBalance()>=price) {
 						mobile.performPayMethod(price);
@@ -174,7 +203,7 @@ public class UserSystemBoundary {
 			
 		}
 		
-		else if(serve.equals("Landline service"))
+		else if(serve.equals("Landline"))
 		{
 			Services landline = new LandlineService();
 			landline.displayProviders();
@@ -200,27 +229,44 @@ public class UserSystemBoundary {
 			if(payMthodNum == 1) //credit card
 			{
 				Payment payMethod = new CreditCard();
-				landline.setPayMethod(payMethod);
-				System.out.println("Enter the following: ");
-				((CreditCard) payMethod).creditCardForm();
-				String creditCardNum = scan.next(), CCN = scan.next();
+				if(counter == 0) {
+					payMethod = new OverallDiscount(payMethod);
+				}
+				
+				boolean serviceDiscount = SpecificDiscount.searchService(serve);
+				if(serviceDiscount)
+					payMethod = new SpecificDiscount(payMethod);							
+				landline.setPayMethod(payMethod);	
 				landline.performPayMethod(price);
-
+				System.out.println("Enter the following: ");
+				CreditCard.creditCardForm();
+				String creditCardNum = scan.next(), CCN = scan.next();
+				System.out.println("payment with credit card is done successfully");
+				counter++;
 			}
 			else if(payMthodNum == 2)//cash
 			{
 				Payment payMethod = new Cash();
-				landline.setPayMethod(payMethod);
+				if(counter == 0) {
+					payMethod = new OverallDiscount(payMethod);
+				}
+				
+				boolean serviceDiscount = SpecificDiscount.searchService(serve);
+				if(serviceDiscount)
+					payMethod = new SpecificDiscount(payMethod);							
+				landline.setPayMethod(payMethod);	
 				landline.performPayMethod(price);
+				System.out.println("payment with cash is done successfully");
+				counter++;
 			}
 			
 		}
-		else if(serve.equals("Internet payment service"))
+		else if(serve.equals("InternetPayment"))
 		{
-			Services landline = new InternetService();
-			landline.displayProviders();
+			Services Internet = new InternetService();
+			Internet.displayProviders();
 			int providerNum=scan.nextInt();
-			servprovider=landline.orderServiceProvider(providerNum);	
+			servprovider=Internet.orderServiceProvider(providerNum);	
 			
 		
 			providerForm = servprovider.getForm();
@@ -232,7 +278,7 @@ public class UserSystemBoundary {
 
 			}
 			System.out.println("Choose payment method by number");
-			ArrayList<String> paymentMethods = landline.displayPayMethods();
+			ArrayList<String> paymentMethods = Internet.displayPayMethods();
 			for(int i = 1; i <= (int)paymentMethods.size(); i++)
 			{
 				System.out.println("[" + i + "] " + paymentMethods.get(i - 1));
@@ -241,18 +287,36 @@ public class UserSystemBoundary {
 			if(payMthodNum == 1) //credit card
 			{
 				Payment payMethod = new CreditCard();
-				landline.setPayMethod(payMethod);
+				if(counter == 0) {
+					payMethod = new OverallDiscount(payMethod);
+				}
+				
+				boolean serviceDiscount = SpecificDiscount.searchService(serve);
+				if(serviceDiscount)
+					payMethod = new SpecificDiscount(payMethod);							
+				Internet.setPayMethod(payMethod);	
+				Internet.performPayMethod(price);
 				System.out.println("Enter the following: ");
-				((CreditCard) payMethod).creditCardForm();
+				CreditCard.creditCardForm();
 				String creditCardNum = scan.next(), CCN = scan.next();
-				landline.performPayMethod(price);
+				System.out.println("payment with credit card is done successfully");
+				counter++;
 
 			}
 			else if(payMthodNum == 2)//cash
 			{
 				Payment payMethod = new Cash();
-				landline.setPayMethod(payMethod);
-				landline.performPayMethod(price);
+				if(counter == 0) {
+					payMethod = new OverallDiscount(payMethod);
+				}
+				
+				boolean serviceDiscount = SpecificDiscount.searchService(serve);
+				if(serviceDiscount)
+					payMethod = new SpecificDiscount(payMethod);							
+				Internet.setPayMethod(payMethod);	
+				Internet.performPayMethod(price);
+				System.out.println("payment with cash is done successfully");
+				counter++;
 			}
 			
 			
@@ -284,39 +348,39 @@ public class UserSystemBoundary {
 			if(payMthodNum == 1) //credit card
 			{
 				Payment payMethod = new CreditCard();
-				donation.setPayMethod(payMethod);
+				if(counter == 0) {
+					payMethod = new OverallDiscount(payMethod);
+				}
+				
+				boolean serviceDiscount = SpecificDiscount.searchService(serve);
+				if(serviceDiscount)
+					payMethod = new SpecificDiscount(payMethod);							
+				donation.setPayMethod(payMethod);	
+				donation.performPayMethod(price);
 				System.out.println("Enter the following: ");
 				((CreditCard) payMethod).creditCardForm();
 				String creditCardNum = scan.next(), CCN = scan.next();
-				donation.performPayMethod(price);
+				System.out.println("payment with credit card is done successfully");
+				counter++;
 
 			}
 			else if(payMthodNum == 2)//cash
 			{
 				Payment payMethod = new Cash();
-				donation.setPayMethod(payMethod);
+				if(counter == 0) {
+					payMethod = new OverallDiscount(payMethod);
+				}
+				
+				boolean serviceDiscount = SpecificDiscount.searchService(serve);
+				if(serviceDiscount)
+					payMethod = new SpecificDiscount(payMethod);							
+				donation.setPayMethod(payMethod);	
 				donation.performPayMethod(price);
+				System.out.println("payment with cash is done successfully");
+				counter++;
 			}
 		}
-		//map of services -> array of service provider
 	}
 
 }
 
-
-
-/*
- * System.out.println("[1] Show list of services:");
-		System.out.println("[2] Search for service by name:");
-		System.out.println("[3] Request refund:");
-		System.out.println("[4] Check discount:");		
-		int option = scan.nextInt();
-		switch (option) {
-		case 1:
-			System.out.println("Mobile recharge service");
-			System.out.println("Internet payment service");
-			System.out.println("Landline service");
-			System.out.println("Donations");
-			break;
-
- */

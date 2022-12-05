@@ -6,6 +6,8 @@ import java.util.*;
 public class Main {
 	public static void main (String [] args) {
 		Scanner scan = new Scanner(System.in);
+		User user =new User(); 
+		Admin admin = new Admin();
 //		Account acc = new Account();
 		boolean activation=true;
 		while(activation) {
@@ -14,7 +16,7 @@ public class Main {
 			int option = scan.nextInt();
 			if(option == 1)
 			{
-				User user = new User();
+				
 				boolean cont=true;
 				while(cont) {
 //					for (Map.Entry<String, String> entry : Account.userAccounts.entrySet())
@@ -47,13 +49,15 @@ public class Main {
 						break;
 						
 					case 2:
+						User newuser = new User();
 						System.out.println("Enter username:");
 						String u = scan.next();
 						System.out.println("Enter email:");
 						String e1 = scan.next();
 						System.out.println("Enter password:");
 						String p1 = scan.next();
-						String response = user.signUp(u, e1, p1);
+						String response = newuser.signUp(u, e1, p1,newuser);
+						admin.subscribe(newuser);
 						System.out.println(response);
 						break;
 					case 3:
@@ -65,7 +69,7 @@ public class Main {
 			//Admin email -> "admin@gmail.com", Admin Password -> "0000";
 			else
 			{
-				Admin admin = new Admin();
+				
 				System.out.println("Enter email:");
 				String e = scan.next();
 				System.out.println("Enter password:");

@@ -16,8 +16,8 @@ public class AdminSystemBoundry {
 		
 		System.out.println("Enter service name");
 		System.out.println("MobileRecharge");
-		System.out.println("Internet payment service");
-		System.out.println("Landline service");
+		System.out.println("InternetPayment");
+		System.out.println("Landline");
 		System.out.println("Donations");
         String serviceName = " ";
         serviceName = scan.nextLine();
