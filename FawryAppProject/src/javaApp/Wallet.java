@@ -2,7 +2,7 @@ package javaApp;
 
 import java.util.Map;
 
-public class Wallet implements Payment{ //each user has a wallet that created auto 
+public class Wallet implements Payment{ 
 	
 	private double balance = 0;
 	public double pay(double amount) {

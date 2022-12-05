@@ -96,6 +96,7 @@ public class UserSystemBoundary {
 		double price = 0;
 		ArrayList<String> providerForm = new ArrayList<String>(); //to retrieve fields of the form
 		ArrayList<String> formAns = new ArrayList<String>(); //to store user's answers to the form
+		System.out.println("Enter service name");
         String serve = scan.next();
 		if(serve.equals("MobileRecharge")) {
 			

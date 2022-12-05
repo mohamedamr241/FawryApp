@@ -20,7 +20,7 @@ public class Main {
 				while(cont) {
 					System.out.println("[1] Sign-in:");
 					System.out.println("[2] Sign-up:");
-					System.out.println("[3] logout:");
+					System.out.println("[3] exit:");
 					int option2 = scan.nextInt();
 					switch (option2) {
 					case 1:
@@ -59,20 +59,36 @@ public class Main {
 			}
 			else
 			{
-				
-				System.out.println("Enter email:");
-				String e = scan.next();
-				System.out.println("Enter password:");
-				String p = scan.next();
-				boolean ok = admin.signIn(e, p);
-				if(ok)
-				{
-					AdminSystemBoundry adminBoundary = new AdminSystemBoundry();
-					adminBoundary.Display();
+				boolean cont=true;
+				while(cont) {
+					System.out.println("[1] Sign-in:");
+					System.out.println("[2] exit:");
+					int option3 = scan.nextInt();
+					switch (option3) 
+					{
+					case 1:
+						System.out.println("Enter email:");
+						String e = scan.next();
+						System.out.println("Enter password:");
+						String p = scan.next();
+						boolean ok = admin.signIn(e, p);
+						if(ok)
+						{
+							AdminSystemBoundry adminBoundary = new AdminSystemBoundry();
+							adminBoundary.Display();
+						}
+						else
+							System.out.println("Email or password incorrent, try agin");
+						break;
+					case 2:
+						cont=false;
+						break;
+					}
+					
+						
+					
 				}
-				else
-					System.out.println("Email or password incorrent, try agin");
-							
+				
 			}
 		}
 		

@@ -21,17 +21,13 @@ public class Admin implements Subject{
 
 	public boolean proccessRefund(Obj obj)
 	{
-		boolean found = false;
-		for(Obj o : Transactions.transactions)
+		for(int i = 0; i < Transactions.transactions.size(); i++)
 		{
+			Obj o = Transactions.transactions.get(i);
 			if(o.transId == obj.transId && o.amount == obj.amount && o.serviceName.equals(obj.serviceName) && o.userEmail.equals(obj.userEmail))
-			{
-				found = true;
-				break;
-			}
+				return true;
 		}
-		reqRefundList.remove(obj);
-		return found;
+		return false;
 	}
 
 	@Override

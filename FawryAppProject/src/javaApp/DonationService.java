@@ -17,14 +17,10 @@ public class DonationService extends Services {
 			providerHandler=new HospitalHandler();
 			sp = new CancerHospital();
 		}
-		else if(n == 2) {
-		//	providerHandler=new SchoolsHanadler();
+		else if(n == 2)
 			sp = new Schools();
-		}
-		else if(n == 3) {
-			//providerHandler=new NGOsHandler();
+		else if(n == 3)
 			sp = new NGOs();
-		}
 		
 		return sp;
 
