@@ -48,9 +48,13 @@ public class AdminSystemBoundry {
 				System.out.println("[2]reject Refund Request");
 				
 				int acc = scan.nextInt();
-				if(acc == 1)
-					admin.Notify("your refund request is accepted");
-				else admin.Notify("your refund request is rejected");
+				if(acc == 1) {
+					Wallet userWallet = Wallet.getUserWallet(Admin.reqRefundList.get(i).userEmail);
+					double balance = userWallet.getBalance();
+					userWallet.chargeViaCreditCard(Admin.reqRefundList.get(i).amount);
+					Admin.NotifyRefund(Admin.reqRefundList.get(i).userEmail,"your refund request is accepted and your wallet balance is updated from " + balance + " to " + userWallet.getBalance());
+				}
+				else Admin.NotifyRefund(Admin.reqRefundList.get(i).userEmail,"your refund request is rejected"); 
 			}
 			Admin.reqRefundList.clear();
 			break;
@@ -64,7 +68,3 @@ public class AdminSystemBoundry {
 	}
 	
 }
-//				Wallet userWallet = Wallet.getUserWallet(Admin.reqRefundList.get(i).userEmail);
-//				double balance = userWallet.getBalance();
-//				userWallet.chargeViaCreditCard(Admin.reqRefundList.get(i).amount);
-//				admin.Notify("your refund request is accepted and your wallet balance is updated from " + balance + " to " + userWallet.getBalance());

@@ -29,7 +29,14 @@ public class Admin implements Subject{
 		}
 		return false;
 	}
-
+	public static void NotifyRefund(String email,String message) {
+		for(Map.Entry<String, User> entry : Account.users.entrySet())
+		{
+			if(entry.getKey().equals(email)) {
+				entry.getValue().notifications.add(message);
+			}
+		}
+	}
 	@Override
 	public void Notify(String note) {
 		for(int i=0;i<systemUsers.size();i++) {
