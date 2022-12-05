@@ -3,7 +3,7 @@ package javaApp;
 import java.util.*;
 
 public class Admin implements Subject{
-	public static ArrayList<Obj> reqRefundList = new ArrayList<Obj>();
+	public static ArrayList<TransactionEntity> reqRefundList = new ArrayList<TransactionEntity>();
 	static ArrayList<Observer> systemUsers = new ArrayList<Observer>();
 	public boolean signIn(String email, String pass)
 	{
@@ -15,15 +15,15 @@ public class Admin implements Subject{
 	public void addDiscount(String service, int dis)
 	{
 		SpecificDiscount.serviceDiscount.put(service,dis);
-		Notify(dis+" is applied on "+ service);
+		Notify(dis+"% discount is applied on "+ service);
 	}
 
 
-	public boolean proccessRefund(Obj obj)
+	public boolean proccessRefund(TransactionEntity obj)
 	{
 		for(int i = 0; i < Transactions.transactions.size(); i++)
 		{
-			Obj o = Transactions.transactions.get(i);
+			TransactionEntity o = Transactions.transactions.get(i);
 			if(o.transId == obj.transId && o.amount == obj.amount && o.serviceName.equals(obj.serviceName) && o.userEmail.equals(obj.userEmail))
 				return true;
 		}

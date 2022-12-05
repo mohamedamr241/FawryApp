@@ -34,7 +34,7 @@ public class User implements Observer{
 	
 	public static void requestRefund(int id, double amount, String service, String email) 
 	{
-		Obj obj = new Obj(id, amount, service, email);
+		TransactionEntity obj = new TransactionEntity(id, amount, service, email);
 		Admin.reqRefundList.add(obj);
 		System.out.println("Your request refund is submited, it will be processed and you'll get notification");
 	}
