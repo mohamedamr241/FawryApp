@@ -15,4 +15,4 @@ software Engineering project.
 
 7- Pay by wallet applied in mobile recharge service.
 
-8- We, Vodafone, Orange, and Etisalat providers have mobile number field in their form, the mobile number must contain 11 numbers and starts with 015 for We, 011 for Etisalat, etc.. (Handler of each form validates the input)
+8- Providers of mobile recharge service (We, Vodafone, Orange, and Etisalat) have mobile number field in their form, it must contain 11 numbers and starts with 015 for We, 011 for Etisalat, etc.. (Handler of each form validates the input).
