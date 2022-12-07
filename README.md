@@ -12,3 +12,5 @@ software Engineering project.
 6- “Each refund request should contain the related service and the amount to be refunded” -> amount to be refunded is the amount after discount is applied (amount that user actually paid).
 
 7- Pay by wallet applied in mobile recharge service.
+
+8- We, Vodafone, Orange, and Etisalat providers have mobile number field in their form, the mobile number must contain 11 numbers and starts with 015 for We, 011 for Etisalat, etc.. (Handler of each form validates the input)
