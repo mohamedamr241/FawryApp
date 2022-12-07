@@ -1,6 +1,8 @@
 # FawryApp
 software Engineering project.
+
 1 – Admin has fixed user name -> admin@gmail.com, password -> 0000
+
 2 – Search for any service should be done by its name (MobileRecharge, InternetPayment, Landline, Donations).
 
 3- There’s an interface class Handler, handler of each provider service form should implement this class but we didn’t do all handlers   to avoid class explosion.
