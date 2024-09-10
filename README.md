@@ -47,16 +47,26 @@ Specific discounts for particular services (e.g., 20% off mobile recharge servic
 ### Refund Management:
 Admins can view and manage all refund requests. They can approve or reject refunds, and if approved, a refund transaction will be processed.
 
+# Design Patterns
+## Factory Method Pattern
+Used to create specific service providers for each type of service. This pattern allows the system to manage various services and their corresponding providers efficiently.
+## Decorator Pattern
+Applied to discounts, allowing both overall and specific discounts to be applied dynamically. This pattern helps in decorating the payment method with multiple discount strategies.
+## Strategy Pattern
+Implemented in the payment process to handle multiple payment algorithms such as credit card, wallet, and cash. This pattern allows switching between different payment strategies at runtime.
+## Observer Pattern
+Used for notifying users about updates in discounts and refund requests. Admin actions like adding discounts or responding to refund requests trigger notifications to all users.
+
 ## Notes:
-1 – Admin has fixed user name -> admin@gmail.com, password -> 0000
+1–Admin has fixed user name -> admin@gmail.com, password -> 0000
 
-2 – Search for any service should be done by its name (MobileRecharge, InternetPayment, Landline, Donations).
+2—Search for any service by its name (MobileRecharge, InternetPayment, Landline, Donations).
 
-3- There’s an interface class Handler, handler of each provider service form should implement this class but we didn’t do all handlers   to avoid class explosion.
+3—There’s an interface class Handler. The handler of each provider service form should implement this class, but we didn’t do all handlers   to avoid class explosion.
 
-4- User must know his transaction ID to be able to request refund.
+4-The user must know his transaction ID to request a refund.
 
-5- Money of the refund process will be back in user’s wallet.
+5-Money from the refund process will be back in the user’s wallet.
 
 6- “Each refund request should contain the related service and the amount to be refunded” -> amount to be refunded is the amount after discount is applied (amount that user actually paid).
 
